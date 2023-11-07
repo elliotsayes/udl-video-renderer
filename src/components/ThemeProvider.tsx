@@ -43,7 +43,7 @@ export function ThemeProvider({
       return theme
     }
   }, [theme])
- 
+
   useEffect(() => {
     const root = window.document.documentElement
  
@@ -51,7 +51,7 @@ export function ThemeProvider({
     
     root.classList.add(activeTheme)
   }, [activeTheme])
- 
+
   const value = {
     theme,
     activeTheme,
@@ -60,7 +60,7 @@ export function ThemeProvider({
       setTheme(theme)
     },
   }
- 
+
   return (
     <ThemeProviderContext.Provider {...props} value={value}>
       {children}
@@ -70,9 +70,9 @@ export function ThemeProvider({
 
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext)
- 
+
   if (context === undefined)
     throw new Error("useTheme must be used within a ThemeProvider")
- 
+
   return context
 }
