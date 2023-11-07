@@ -23,14 +23,14 @@ export const LicenseConnector: React.FC<LicenseConnectorProps> = ({ ...props }) 
 
   if (!address) {
     return (
-      <>
-        <p>Please connect</p>
+      <div className="w-full h-full flex flex-col justify-center items-center gap-2">
+        <p>Please login to view Licensed item</p>
         <Button
           onClick={connect}
         >
-          Open Wallet
+          Connect Wallet
         </Button>
-      </>
+      </div>
     )
   }
 
