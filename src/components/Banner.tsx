@@ -23,7 +23,7 @@ export const Banner = () => {
               <DropdownMenuTrigger>
                 <ProfileIcon
                   address={address}
-                  onClick={() => {}}
+                  forceInteractive={true}
                 />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">

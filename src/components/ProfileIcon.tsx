@@ -4,17 +4,18 @@ import { Identicon } from "./Identicon";
 interface Props {
   address?: string;
   onClick?: () => void;
+  forceInteractive?: boolean;
 }
 
 export const ProfileIcon = (props: Props) => {
-  const { address, onClick } = props;
+  const { address, onClick, forceInteractive } = props;
 
   const hasAddress = address !== undefined;
-  const hasOnClick = onClick !== undefined;
+  const interactive = forceInteractive ?? onClick !== undefined;
 
   return (
     <Avatar
-      className={`${hasOnClick ? 'hover:shadow-lg cursor-pointer' : ''} ${hasAddress ? 'bg-secondary p-1' : 'bg-gradient-radial from-secondary to-secondary/90 animate-pulse'}`}
+      className={`${interactive ? 'hover:shadow-lg cursor-pointer' : ''} ${hasAddress ? 'bg-secondary p-1' : 'bg-gradient-radial from-secondary to-secondary/90 animate-pulse'}`}
       onClick={onClick}
     >
       {

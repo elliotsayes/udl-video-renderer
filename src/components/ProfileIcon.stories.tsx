@@ -26,11 +26,33 @@ export const HasAddress: Story = {
   args: {
     // My personal wallet address
     address: "0cQJ5Hd4oCaL57CWP-Pqe5_e0D4_ZDWuxKBgR9ke1SI",
+    onClick: undefined,
   },
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
+export const HasAddressOnClick: Story = {
+  args: {
+    // My personal wallet address
+    address: "0cQJ5Hd4oCaL57CWP-Pqe5_e0D4_ZDWuxKBgR9ke1SI",
+    // onClick: undefined,
+  },
+};
+
+// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
+export const HasAddressForceInteractive: Story = {
+  args: {
+    // My personal wallet address
+    address: "0cQJ5Hd4oCaL57CWP-Pqe5_e0D4_ZDWuxKBgR9ke1SI",
+    onClick: undefined,
+    forceInteractive: true,
+  },
+};
+
+
+// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const NoAddress: Story = {
   args: {
+    onClick: undefined,
   },
 };
