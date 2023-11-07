@@ -1,4 +1,4 @@
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "./provider/ThemeProvider";
 import { useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";

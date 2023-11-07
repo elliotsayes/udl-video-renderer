@@ -1,22 +1,13 @@
 import React from "react";
-import { RenderTxResultFallback, useRenderTx } from "@/hooks/useRenderTx";
+import { useRenderTx } from "@/hooks/useRenderTx";
 import { Renderer } from "./Renderer";
 
-interface Props {
-  fallbackComponent?: React.ComponentType<{
-    renderTx: RenderTxResultFallback;
-  }>;
-}
+interface Props {}
 
-export const RenderTxLoader = (props: Props) => {
-  const { fallbackComponent } = props;
-
+export const RenderTxLoader: React.FC<Props> = () => {
   const renderTx = useRenderTx();
 
   if (renderTx.state !== 'valid') {
-    if (fallbackComponent) {
-      return React.createElement(fallbackComponent, { renderTx });
-    }
     return (
       <p>{renderTx.state}</p>
     )

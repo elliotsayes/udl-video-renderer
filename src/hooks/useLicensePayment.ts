@@ -1,4 +1,4 @@
-import { usePayments } from "@/components/PaymentsProvider";
+import { usePayments } from "@/components/provider/PaymentsProvider";
 import { useQuery } from "react-query";
 
 interface UseLicensePaymentProps {
