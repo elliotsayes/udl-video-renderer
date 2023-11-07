@@ -23,9 +23,13 @@ export const useLicensePayment = ({
   const queryKey = ["licensePayment", contractAddress];
 
   const fetchLicensePayment = async () => {
-    let licensePayment = 0;
     try {
-      licensePayment = await payments.payment(contractAddress);
+      const licensePayment = await payments.payment(contractAddress);
+      return {
+        hasLicense: true,
+        requiresPayment: licensePayment > 0,
+        licensePayment,
+      } as LicensePaymentResult;
     } catch (e) {
       if ((e as Error)?.message == "License not Available") {
         return {
@@ -34,11 +38,6 @@ export const useLicensePayment = ({
       }
       throw e;
     }
-    return {
-      hasLicense: true,
-      requiresPayment: licensePayment > 0,
-      licensePayment,
-    };
   };
 
   const {
