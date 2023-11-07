@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useCallback, useContext } from 'react';
 import { z } from 'zod';
 import { zTxId } from '@/types/arweave';
 
@@ -24,9 +24,17 @@ export const TxIdProvider: React.FC<TxIdProviderProps> = ({ txIds, children }) =
 export const useTxIds = () => {
   const txIds = useContext(TxIdContext);
 
+  const setTxId = useCallback((key: string, txId: z.infer<typeof zTxId>) => {
+    txIds.set(key, txId);
+  }, [txIds]);
+
+  const getTxIds = useCallback(() => {
+    return txIds;
+  }, [txIds]);
+
   return {
-    setTxId: (key: string, txId: z.infer<typeof zTxId>) => txIds.set(key, txId),
-    getTxIds: () => txIds,
+    setTxId,
+    getTxIds,
   }
 }
 
