@@ -2,6 +2,7 @@ import { ThemeProvider } from "./ThemeProvider";
 import { ArweaveProvider } from "./ArweaveProvider";
 import { TxIdProvider } from "./TxIdProvider";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { PaymentsProvider } from "./PaymentsProvider";
 
 const queryClient = new QueryClient();
 
@@ -13,14 +14,16 @@ export const Providers = (props: Props) => {
   const { children } = props;
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
         <ArweaveProvider>
-          <TxIdProvider>
-            {children}
-          </TxIdProvider>
+          <PaymentsProvider>
+            <TxIdProvider>
+              {children}
+            </TxIdProvider>
+          </PaymentsProvider>
         </ArweaveProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   )
 }
