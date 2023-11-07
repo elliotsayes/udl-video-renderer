@@ -13,7 +13,7 @@ export const ProfileIcon = (props: Props) => {
 
   return (
     <Avatar
-      className={`${hasAddress ? 'bg-primary/10 p-1' : 'bg-gradient-radial from-primary/10 to-primary/20 animate-pulse'}`}
+      className={`${hasAddress ? 'bg-secondary p-1' : 'bg-gradient-radial from-secondary to-secondary/90 animate-pulse'}`}
       onClick={onClick}
     >
       {
