@@ -10,7 +10,8 @@ type LicensePaymentResult =
       hasLicense: false;
     }
   | {
-      hasLicense: boolean;
+      hasLicense: true;
+      requiresPayment: boolean;
       licensePayment: number;
     };
 
@@ -35,6 +36,7 @@ export const useLicensePayment = ({
     }
     return {
       hasLicense: true,
+      requiresPayment: licensePayment > 0,
       licensePayment,
     };
   };
