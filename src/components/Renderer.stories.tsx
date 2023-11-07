@@ -15,9 +15,9 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-  render: () => (
+  render: (args) => (
     <Providers>
-      <Renderer />
+      <Renderer {...args} />
     </Providers>
   ),
 } satisfies Meta<typeof Renderer>;
@@ -27,5 +27,7 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
-  args: {},
+  args: {
+    renderTx: "ynve-5sftS5fUp_UZw39bKuDjIybsm7AsWsBILey9iU",
+  },
 };
