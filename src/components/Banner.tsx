@@ -2,6 +2,7 @@ import { useActiveAddress, useConnection } from "arweave-wallet-kit";
 import { Button } from "./ui/button";
 import { AppName } from "@/app";
 import { ProfileIcon } from "./ProfileIcon";
+import { ThemeButton } from "./ThemeButton";
 
 export const Banner = () => {
   const { connected, connect, disconnect } = useConnection();
@@ -12,26 +13,29 @@ export const Banner = () => {
       <span className="text-xl font-semibold leading-none tracking-tight">
         {AppName}
       </span>
-      {
-        connected ? (
-          address ? (
-            <ProfileIcon 
-              address={address}
-              onClick={disconnect}
-            />
+      <div className="flex flex-row gap-4 items-center">
+        <ThemeButton />
+        {
+          connected ? (
+            address ? (
+              <ProfileIcon 
+                address={address}
+                onClick={disconnect}
+              />
+            ) : (
+              <p>Loading...</p>
+            )
           ) : (
-            <p>Loading...</p>
+            <Button
+              variant={"secondary"}
+              onClick={connect}
+              size={"sm"}
+            >
+              Connect Wallet
+            </Button>
           )
-        ) : (
-          <Button
-            variant={"secondary"}
-            onClick={connect}
-            size={"sm"}
-          >
-            Connect Wallet
-          </Button>
-        )
-      }
+        }
+      </div>
     </div>
   )
 }
