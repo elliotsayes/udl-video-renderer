@@ -7,13 +7,15 @@ type TxIdMap = Map<string, string>;
 const TxIdContext = createContext<TxIdMap>(new Map());
 
 interface TxIdProviderProps {
-  txIds: TxIdMap;
+  txIds?: TxIdMap;
   children: React.ReactNode;
 }
 
+const defaultTxIds = new Map();
+
 export const TxIdProvider: React.FC<TxIdProviderProps> = ({ txIds, children }) => {
   return (
-    <TxIdContext.Provider value={txIds}>
+    <TxIdContext.Provider value={txIds ?? defaultTxIds}>
       {children}
     </TxIdContext.Provider>
   );

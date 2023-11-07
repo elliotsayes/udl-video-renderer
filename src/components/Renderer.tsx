@@ -2,7 +2,7 @@ import { useConnection } from "arweave-wallet-kit";
 import { useTxId } from "./TxIdProvider";
 
 export const Renderer = () => {
-  const tx = useTxId("renderTx");
+  const tx = useTxId("renderTx")!;
 
   const { connected, connect, disconnect } = useConnection();
 

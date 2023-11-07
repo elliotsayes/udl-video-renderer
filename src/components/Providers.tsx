@@ -1,5 +1,6 @@
 import { ThemeProvider } from "./ThemeProvider";
 import { ArweaveProvider } from "./ArweaveProvider";
+import { TxIdProvider } from "./TxIdProvider";
 
 interface Props {
   children: React.ReactNode;
@@ -11,7 +12,9 @@ export const Providers = (props: Props) => {
   return (
     <ThemeProvider>
       <ArweaveProvider>
-        {children}
+        <TxIdProvider>
+          {children}
+        </TxIdProvider>
       </ArweaveProvider>
     </ThemeProvider>
   )

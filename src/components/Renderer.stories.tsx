@@ -31,6 +31,5 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    renderTx: "ynve-5sftS5fUp_UZw39bKuDjIybsm7AsWsBILey9iU",
   },
 };
