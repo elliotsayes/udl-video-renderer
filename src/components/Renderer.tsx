@@ -1,31 +1,93 @@
 import { useLicensePayment } from "@/hooks/useLicensePayment";
-import { useTxId, useTxIds } from "./TxIdProvider";
 import { useTxInfo } from "@/hooks/useTxInfo";
 import { getTrailerTxId } from "@/lib/udl";
-import { useEffect } from "react";
+import { RendererLayout } from "./RendererLayout";
+import { VideoInfo, VideoPlayer } from "./VideoPlayer";
+import { getContentType, getTxArweaveGatewayUrl } from "@/lib/arweave";
+import { LicenseConnector } from "./LicenseConnector";
+import { LicenseTrailerLoader } from "./LicenseTrailerLoader";
 
-export const Renderer = () => {
-  const renderTxId = useTxId("renderTx")!;
-  const { licensePayment } = useLicensePayment({
+interface Props {
+  renderTxId: string;
+}
+
+export const Renderer: React.FC<Props> = ({ renderTxId }) => {
+  const { isError: isLicenseError, licensePayment } = useLicensePayment({
     contractAddress: renderTxId,
   });
 
-  const { isSuccess, txInfo } = useTxInfo(renderTxId);
+  const { isError: isTxInfoError, txInfo } = useTxInfo(renderTxId);
   const trailerTxId = txInfo && getTrailerTxId(txInfo);
+  const contentType = txInfo && getContentType(txInfo);
 
-  const { setTxId } = useTxIds();
+  if (isLicenseError) {
+    return (
+      <RendererLayout>
+        <p>License Error</p>
+      </RendererLayout>
+    )
+  }
 
-  useEffect(() => {
-    if (!trailerTxId) return;
-    setTxId("trailerTx", trailerTxId);
-  }, [setTxId, trailerTxId]);
+  if (isTxInfoError) {
+    return (
+      <RendererLayout>
+        <p>Transaction Error</p>
+      </RendererLayout>
+    )
+  }
+
+  if (!licensePayment) {
+    return (
+      <RendererLayout>
+        <p>Loading License...</p>
+      </RendererLayout>
+    )
+  }
+  
+  if (!txInfo) {
+    return (
+      <RendererLayout>
+        <p>Loading Transaction Info...</p>
+      </RendererLayout>
+    )
+  }
+
+  if (!(contentType?.startsWith("video/") ?? false)) {
+    // return (
+    //   <RendererLayout>
+    //     <p>Invalid Media Type</p>
+    //   </RendererLayout>
+    // )
+  }
+
+  if (licensePayment.hasLicense && licensePayment.requiresPayment) {
+    return (
+      <RendererLayout>
+        {
+          trailerTxId ? (
+            <LicenseTrailerLoader
+              renderTxInfo={txInfo}
+              trailerTxId={trailerTxId}
+            />
+          ) : (
+            <LicenseConnector
+              renderTxInfo={txInfo}
+            />
+          )
+        }
+      </RendererLayout>
+    )
+  }
+  
+  const renderVideoInfo: VideoInfo = {
+    url: getTxArweaveGatewayUrl(renderTxId)
+  }
 
   return (
-    <div>
-      <h1>Renderer</h1>
-      <p>TxId: {renderTxId}</p>
-      <p>Info: {isSuccess && JSON.stringify(txInfo)}</p>
-      <p>Has License: {JSON.stringify(licensePayment)}</p>
-    </div>
+    <RendererLayout>
+      <VideoPlayer
+        videoInfo={renderVideoInfo}
+      />
+    </RendererLayout>
   );
 }

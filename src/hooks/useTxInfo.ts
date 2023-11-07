@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { queryTransactionsGQL } from "arweavekit/graphql";
 import type { Tag } from "arweave/web/lib/transaction";
+import { DefaultArweaveGatewayHost } from "@/app";
 
 export type TxInfo = {
   id: string;
@@ -42,7 +43,7 @@ query {
 }
 `;
       const results = await queryTransactionsGQL(txQuery, {
-        gateway: "arweave.net",
+        gateway: DefaultArweaveGatewayHost,
         filters: {},
       });
       const transaction = results.data[0]?.node;

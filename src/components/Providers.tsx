@@ -1,6 +1,5 @@
 import { ThemeProvider } from "./ThemeProvider";
 import { ArweaveProvider } from "./ArweaveProvider";
-import { TxIdProvider } from "./TxIdProvider";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { PaymentsProvider } from "./PaymentsProvider";
 
@@ -18,9 +17,7 @@ export const Providers = (props: Props) => {
       <QueryClientProvider client={queryClient}>
         <ArweaveProvider>
           <PaymentsProvider>
-            <TxIdProvider>
-              {children}
-            </TxIdProvider>
+            {children}
           </PaymentsProvider>
         </ArweaveProvider>
       </QueryClientProvider>

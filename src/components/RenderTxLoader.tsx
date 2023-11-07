@@ -1,24 +1,17 @@
+import React from "react";
 import { RenderTxResultFallback, useRenderTx } from "@/hooks/useRenderTx";
-import React, { useEffect } from "react";
-import { useTxIds } from "./TxIdProvider";
+import { Renderer } from "./Renderer";
 
 interface Props {
-  children: React.ReactNode;
   fallbackComponent?: React.ComponentType<{
     renderTx: RenderTxResultFallback;
   }>;
 }
 
 export const RenderTxLoader = (props: Props) => {
-  const { children, fallbackComponent } = props;
+  const { fallbackComponent } = props;
 
   const renderTx = useRenderTx();
-  const { setTxId } = useTxIds();
-
-  useEffect(() => {
-    if (!(renderTx.state === 'valid')) return;
-    setTxId("renderTx", renderTx.txId);
-  }, [renderTx, setTxId])
 
   if (renderTx.state !== 'valid') {
     if (fallbackComponent) {
@@ -30,8 +23,8 @@ export const RenderTxLoader = (props: Props) => {
   }
 
   return (
-    <>
-      {children}
-    </>
+    <Renderer
+      renderTxId={renderTx.txId}
+    />
   )
 }

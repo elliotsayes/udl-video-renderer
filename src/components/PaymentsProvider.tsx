@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from "react";
 import Payments from "@permaweb/payments";
 import type { Payments as PaymentsType } from "@permaweb/payments";
+import { DefaultArweaveGateway } from "@/app";
 
 // Create a context for the Payments instance
 const PaymentsContext = createContext<PaymentsType | null>(null);
@@ -13,7 +14,7 @@ interface PaymentsProviderProps {
 const PaymentsProvider: React.FC<PaymentsProviderProps> = ({ children }) => {
   // Create a new instance of the Payments class
   const payments = Payments.init({
-    gateway: 'https://arweave.net',
+    gateway: DefaultArweaveGateway,
     warp: {},
     wallet: {},
   });

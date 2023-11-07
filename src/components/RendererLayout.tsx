@@ -8,9 +8,11 @@ export const RendererLayout = (props: Props) => {
   const { children } = props;
 
   return (
-    <div>
+    <div className="h-screen min-h-[20em] flex flex-col items-stretch">
       <Banner />
-      {children}
+      <div className="w-full h-full">
+        {children}
+      </div>
     </div>
   )
 }

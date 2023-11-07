@@ -16,7 +16,7 @@ const meta = {
   argTypes: {},
   render: () => (
     <RendererLayout>
-      <div className="w-full h-full bg-red-500">
+      <div className="flex flex-col flex-grow-0 justify-center text-center">
         Test Content
       </div>
     </RendererLayout>
