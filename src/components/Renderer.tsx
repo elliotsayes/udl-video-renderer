@@ -4,8 +4,9 @@ import { getTrailerTxId } from "@/lib/udl";
 import { RendererLayout } from "./RendererLayout";
 import { VideoInfo, VideoPlayer } from "./VideoPlayer";
 import { getContentType, getTxArweaveGatewayUrl } from "@/lib/arweave";
-import { LicenseConnector } from "./LicenseConnector";
 import { LicenseTrailerLoader } from "./LicenseTrailerLoader";
+import { LoadingContent } from "./LoadingContent";
+import { LicenseConnector } from "./LicenseConnector";
 
 interface Props {
   renderTxId: string;
@@ -39,7 +40,9 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
   if (!licensePayment) {
     return (
       <RendererLayout>
-        <p>Loading License...</p>
+        <LoadingContent>
+          <p>Loading License...</p>
+        </LoadingContent>
       </RendererLayout>
     )
   }
@@ -47,7 +50,9 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
   if (!txInfo) {
     return (
       <RendererLayout>
-        <p>Loading Transaction Info...</p>
+        <LoadingContent>
+          <p>Loading Transaction Info...</p>
+        </LoadingContent>
       </RendererLayout>
     )
   }

@@ -2,6 +2,7 @@ import { getContractBazaarUrl, getTxArweaveGatewayUrl } from "@/lib/arweave";
 import { VideoInfo, VideoPlayer } from "./VideoPlayer";
 import { LicenseConnectorProps } from "./LicenseConnector";
 import { usePaidFor } from "@/hooks/usePaidFor";
+import { LoadingContent } from "./LoadingContent";
 
 interface Props extends LicenseConnectorProps {
   address: string;
@@ -21,7 +22,9 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
 
   if (isPaidFor === undefined) {
     return (
-      <p>Loading payment status...</p>
+      <LoadingContent>
+        <p>Loading payment status...</p>
+      </LoadingContent>
     )
   }
 
