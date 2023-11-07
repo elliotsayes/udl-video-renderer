@@ -15,7 +15,7 @@ export const Banner = () => {
       <span className="text-xl font-semibold leading-none tracking-tight">
         {AppName}
       </span>
-      <div className="flex flex-row gap-4 items-center">
+      <div className="flex flex-row gap-2 items-center">
         <ThemeButton />
         {
           connected ? (
