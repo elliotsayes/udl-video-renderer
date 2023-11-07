@@ -1,6 +1,9 @@
 import { AppInfo } from "arconnect";
 
+export const AppName = import.meta.env.VITE_APP_NAME;
+export const AppLogoUrl = import.meta.env.VITE_APP_LOGO_URL;
+
 export const appInfo: AppInfo = {
-  name: "UDL Video Renderer",
-  logo: "https://arweave.net/2xpWGVX7jZr0E2z2w3DQ6eD0XQO8vZ6J2Z0g3VU2y7Y",
+  name: AppName,
+  logo: AppLogoUrl,
 };
