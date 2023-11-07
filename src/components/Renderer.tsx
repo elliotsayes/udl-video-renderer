@@ -1,10 +1,20 @@
 import { useConnection } from "arweave-wallet-kit";
-import { useTxId } from "./TxIdProvider";
+import { useTxId, useTxIds } from "./TxIdProvider";
 import { useTxInfo } from "@/hooks/useTxInfo";
+import { getTrailerTxId } from "@/lib/udl";
+import { useEffect } from "react";
 
 export const Renderer = () => {
   const renderTxId = useTxId("renderTx")!;
   const { isSuccess, txInfo } = useTxInfo(renderTxId);
+  const trailerTxId = txInfo && getTrailerTxId(txInfo);
+
+  const { setTxId } = useTxIds();
+
+  useEffect(() => {
+    if (!trailerTxId) return;
+    setTxId("trailerTx", trailerTxId);
+  }, [setTxId, trailerTxId])
 
   const { connected, connect, disconnect } = useConnection();
 

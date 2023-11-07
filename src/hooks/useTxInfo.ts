@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { queryTransactionsGQL } from "arweavekit/graphql";
 import type { Tag } from "arweave/web/lib/transaction";
 
-type TxInfo = {
+export type TxInfo = {
   id: string;
   blockTimestamp: number;
   ownerKey: string;
@@ -45,7 +45,6 @@ query {
         gateway: "arweave.net",
         filters: {},
       });
-      console.log(results);
       const transaction = results.data[0]?.node;
       if (!transaction) {
         throw new Error("Transaction not found");
