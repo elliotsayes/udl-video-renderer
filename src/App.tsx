@@ -1,24 +1,17 @@
 import './App.css'
 import { Renderer } from './components/Renderer';
 import { Providers } from './components/Providers';
-import { useRenderTx } from "@/hooks/useRenderTx";
+import { RenderTxLoader } from './components/RenderTxLoader';
+import { RenderTxFallback } from './components/RenderTxFallback';
 
 function App() {
-  const renderTx = useRenderTx();
-
-  if (renderTx.state !== 'valid') {
-    return (
-      <div>
-        {renderTx.state}
-      </div>
-    )
-  }
-
   return (
     <Providers>
-      <Renderer
-        renderTx={renderTx.txId}
-      />
+      <RenderTxLoader
+        fallbackComponent={RenderTxFallback}
+      >
+        <Renderer />
+      </RenderTxLoader>
     </Providers>
   )
 }

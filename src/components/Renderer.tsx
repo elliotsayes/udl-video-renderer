@@ -1,13 +1,8 @@
-import { zTxId } from "@/types/arweave";
 import { useConnection } from "arweave-wallet-kit";
-import { z } from "zod";
+import { useTxId } from "./TxIdProvider";
 
-interface Props {
-  renderTx: z.infer<typeof zTxId>;
-}
-
-export const Renderer = (props: Props) => {
-  const { renderTx: tx } = props;
+export const Renderer = () => {
+  const tx = useTxId("renderTx");
 
   const { connected, connect, disconnect } = useConnection();
 

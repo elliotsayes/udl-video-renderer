@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { zTxId } from "@/types/arweave";
 import { z } from "zod";
 
-type RenderTxResult =
+export type RenderTxResultFallback =
   | {
       state: "loading";
     }
@@ -11,11 +11,14 @@ type RenderTxResult =
     }
   | {
       state: "invalid";
-    }
-  | {
-      state: "valid";
-      txId: z.infer<typeof zTxId>;
     };
+
+export type RenderTxResultValid = {
+  state: "valid";
+  txId: z.infer<typeof zTxId>;
+};
+
+export type RenderTxResult = RenderTxResultFallback | RenderTxResultValid;
 
 export const useRenderTx = () => {
   const [tx, setTx] = useState<RenderTxResult>({ state: "loading" });
