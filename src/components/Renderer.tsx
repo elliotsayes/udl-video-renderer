@@ -38,7 +38,8 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
     return (
       <RendererLayout>
         <ErrorContent>
-          <p>Transaction Error</p>
+          <p>Could not load transaction: {renderTxId}</p>
+          <p>It may take some time to be available at the gateway.</p>
         </ErrorContent>
       </RendererLayout>
     )
