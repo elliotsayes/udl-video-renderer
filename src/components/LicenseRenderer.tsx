@@ -4,6 +4,9 @@ import { LicenseConnectorProps } from "./LicenseConnector";
 import { usePaidFor } from "@/hooks/usePaidFor";
 import { LoadingContent } from "./LoadingContent";
 import { ErrorContent } from "./ErrorContent";
+import { ToastOnce } from "./ToastOnce";
+import { type Toast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast";
 
 interface Props extends LicenseConnectorProps {
   address: string;
@@ -34,39 +37,53 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
   if (isPaidFor === false) {
     if (!trailerTxInfo) {
       return (
-        <p>Please purchase{' '}
-          <a
-            href={getContractBazaarUrl(renderTxInfo.id)}
-            target="_blank"
-            className="underline"
-          >
-            here
-          </a>
-          .
-        </p>
+        <div className="h-[100%] pb-16 flex flex-col flex-grow items-center justify-center">
+          <div>
+            <p className="text-2xl mb-2">
+              Access Denied
+            </p>
+            <p>
+              To view this content, please purchase<br />
+              it on the{' '}
+              <a
+                href={getContractBazaarUrl(renderTxInfo.id)}
+                target="_blank"
+                className="underline"
+              >
+                BazAR Marketplace
+              </a>
+              .
+            </p>  
+          </div>
+        </div>
       )
     }
   
     const trailerVideoInfo: VideoInfo = {
       url: getTxArweaveGatewayUrl(trailerTxInfo.id),
     }
+
+    const trailerToast: Toast = {
+      title: "Viewing trailer",
+      description: "Please purchase this content on the BazAR Marketplace to watch the full video.",
+      action: (
+        <ToastAction
+          altText="View asset on the BazAR Marketplace"
+          onClick={() => window.open(getContractBazaarUrl(renderTxInfo.id), "_blank")}
+        >
+          Open on BazAR
+        </ToastAction>
+      ),
+    };
   
     return (
       <>
-        <span>Trailer:</span>
         <VideoPlayer
           videoInfo={trailerVideoInfo}
         />
-        <p>Please purchase{' '}
-          <a
-            href={getContractBazaarUrl(renderTxInfo.id)}
-            target="_blank"
-            className="underline"
-          >
-            here
-          </a>
-          .
-        </p>
+        <ToastOnce
+          toast={trailerToast}
+        />
       </>
     )
   } 
@@ -75,13 +92,27 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
     url: getTxArweaveGatewayUrl(renderTxInfo.id),
   }
 
+  const paidForToast: Toast = {
+    title: "Access Granted!",
+    description: "Thank you for purchasing this video ❤️",
+    action: (
+      <ToastAction
+        altText="View on the BazAR Marketplace"
+        onClick={() => window.open(getContractBazaarUrl(renderTxInfo.id), "_blank")}
+      >
+        Open on BazAR
+      </ToastAction>
+    ),
+  };
+
   return (
     <>
-      <h1>Your Video</h1>
       <VideoPlayer
         videoInfo={renderVideoInfo} 
       />
-      <p>Thank you for your support in purchasing</p>
+      <ToastOnce
+        toast={paidForToast}
+      />
     </>
   )
 }
