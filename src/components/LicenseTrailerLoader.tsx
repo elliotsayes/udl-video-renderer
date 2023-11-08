@@ -1,6 +1,7 @@
 import { useTxInfo } from "@/hooks/useTxInfo";
 import { LicenseConnector, LicenseConnectorProps } from "./LicenseConnector";
 import { LoadingContent } from "./LoadingContent";
+import { ErrorContent } from "./ErrorContent";
 
 interface Props extends LicenseConnectorProps {
   trailerTxId: string;
@@ -11,7 +12,9 @@ export const LicenseTrailerLoader: React.FC<Props> = ({ trailerTxId, ...props })
   
   if (isError) {
     return (
-      <div>Error Loading Trailer</div>
+      <ErrorContent>
+        <div>Error Loading Trailer</div>
+      </ErrorContent>
     )
   }
 

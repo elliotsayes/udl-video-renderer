@@ -7,6 +7,7 @@ import { getContentType, getTxArweaveGatewayUrl } from "@/lib/arweave";
 import { LicenseTrailerLoader } from "./LicenseTrailerLoader";
 import { LoadingContent } from "./LoadingContent";
 import { LicenseConnector } from "./LicenseConnector";
+import { ErrorContent } from "./ErrorContent";
 
 interface Props {
   renderTxId: string;
@@ -24,7 +25,9 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
   if (isLicenseError) {
     return (
       <RendererLayout>
-        <p>License Error</p>
+        <ErrorContent>
+          <p>License Error</p>
+        </ErrorContent>
       </RendererLayout>
     )
   }
@@ -32,7 +35,9 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
   if (isTxInfoError) {
     return (
       <RendererLayout>
-        <p>Transaction Error</p>
+        <ErrorContent>
+          <p>Transaction Error</p>
+        </ErrorContent>
       </RendererLayout>
     )
   }
@@ -60,7 +65,12 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
   if (!(contentType?.startsWith("video/") ?? false)) {
     // return (
     //   <RendererLayout>
-    //     <p>Invalid Media Type</p>
+    //     <ErrorContent>
+    //       <p>
+    //         Invalid Media Type. Only supports:{' '}<br />
+    //         <code className="">Content-Type: video/*</code>
+    //       </p>
+    //     </ErrorContent>
     //   </RendererLayout>
     // )
   }

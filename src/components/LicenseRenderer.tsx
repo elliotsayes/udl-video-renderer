@@ -3,6 +3,7 @@ import { VideoInfo, VideoPlayer } from "./VideoPlayer";
 import { LicenseConnectorProps } from "./LicenseConnector";
 import { usePaidFor } from "@/hooks/usePaidFor";
 import { LoadingContent } from "./LoadingContent";
+import { ErrorContent } from "./ErrorContent";
 
 interface Props extends LicenseConnectorProps {
   address: string;
@@ -16,7 +17,9 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
 
   if (isError) {
     return (
-      <p>Error loading license</p>
+      <ErrorContent>
+        <p>Error loading license</p>
+      </ErrorContent>
     )
   }
 
