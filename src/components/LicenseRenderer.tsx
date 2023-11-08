@@ -29,7 +29,10 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
   if (isPaidFor === undefined) {
     return (
       <LoadingContent>
-        <p>Loading payment status...</p>
+        <p>
+          <span>Licensed content!</span>{' '}
+          Loading payment status...
+        </p>
       </LoadingContent>
     )
   }
