@@ -5,10 +5,10 @@ import { DefaultArweaveGatewayHost } from "@/app";
 
 export type TxInfo = {
   id: string;
-  blockTimestamp: number;
   ownerKey: string;
   ownerAddress: string;
   tags: Tag[];
+  blockTimestamp?: number;
 };
 
 export const useTxInfo = (txId: string) => {
@@ -27,15 +27,15 @@ query {
       node {
         id
         owner {
-          address
           key
-        }
-        block {
-          timestamp
+          address
         }
         tags {
           name
           value
+        }
+        block {
+          timestamp
         }
       }
     }
@@ -52,10 +52,10 @@ query {
       }
       return {
         id: transaction.id,
-        blockTimestamp: transaction.block.timestamp,
         ownerKey: transaction.owner.key,
         ownerAddress: transaction.owner.address,
         tags: transaction.tags,
+        blockTimestamp: transaction.block?.timestamp,
       } as TxInfo;
     },
     {
