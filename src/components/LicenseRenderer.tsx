@@ -74,6 +74,7 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
           Open on BazAR
         </ToastAction>
       ),
+      duration: Number.MAX_SAFE_INTEGER,
     };
   
     return (
