@@ -16,9 +16,21 @@ export const usePaidFor = ({
 
   const fetchPaidFor = async () => {
     // Call your API or blockchain service to check if the transaction has been paid for by the current wallet
-    const isPaidFor = await payments.isLicensed(contractAddress, walletAddress);
-    console.log({ contractAddress, walletAddress, isPaidFor });
-    return isPaidFor;
+    try {
+      const isPaidFor = await payments.isLicensed(
+        contractAddress,
+        walletAddress
+      );
+      console.log({ contractAddress, walletAddress, isPaidFor });
+      return isPaidFor;
+    } catch (e) {
+      const isPaidForErrorMessage = (e as Error)?.message;
+      if (isPaidForErrorMessage === "No Interactions Found") {
+        return false;
+      }
+      console.error({ isPaidForErrorMessage });
+      throw e;
+    }
   };
 
   const {
