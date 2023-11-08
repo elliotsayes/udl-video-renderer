@@ -33,7 +33,7 @@ export const ArweaveProvider = (props: Props) => {
       }}
       theme={{
         displayTheme: activeTheme,
-        accent: activeTheme === "light" ? darkPrimary  : lightPrimary,
+        accent: darkPrimary,
         titleHighlight: activeTheme === "light" ? darkPrimary : lightPrimary,
         radius: "minimal",
       }}
