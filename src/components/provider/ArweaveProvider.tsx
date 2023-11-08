@@ -35,7 +35,7 @@ export const ArweaveProvider = (props: Props) => {
         displayTheme: activeTheme,
         accent: activeTheme === "light" ? darkPrimary  : lightPrimary,
         titleHighlight: activeTheme === "light" ? darkPrimary : lightPrimary,
-        radius: "default",
+        radius: "minimal",
       }}
     >
       {children}
