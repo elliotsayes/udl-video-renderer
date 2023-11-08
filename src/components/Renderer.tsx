@@ -8,6 +8,8 @@ import { LicenseTrailerLoader } from "./LicenseTrailerLoader";
 import { LoadingContent } from "./LoadingContent";
 import { LicenseConnector } from "./LicenseConnector";
 import { ErrorContent } from "./ErrorContent";
+import { ToastOnce } from "./ToastOnce";
+import { type Toast } from "@/components/ui/use-toast";
 
 interface Props {
   renderTxId: string;
@@ -98,10 +100,18 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
     url: getTxArweaveGatewayUrl(renderTxId)
   }
 
+  const renderToast: Toast = {
+    title: "No License Found",
+    description: "This content is free to view, Enjoy!",
+  }
+
   return (
     <RendererLayout>
       <VideoPlayer
         videoInfo={renderVideoInfo}
+      />
+      <ToastOnce
+        toast={renderToast}
       />
     </RendererLayout>
   );
