@@ -15,7 +15,7 @@ export const VideoPlayer = (props: Props) => {
       {/* Offset for the banner at the top */}
       <div className="pb-8">
         <video
-          className="w-[100%] h-auto"
+          className="w-[100%] md:w-[95%] lg:w-[90%] h-auto mx-auto"
           src={url}
           controls
         />
