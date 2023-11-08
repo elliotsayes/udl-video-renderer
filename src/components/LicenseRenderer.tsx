@@ -21,7 +21,7 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
   if (isError) {
     return (
       <ErrorContent>
-        <p>Error loading license</p>
+        <p>Failed to load license</p>
       </ErrorContent>
     )
   }
@@ -77,7 +77,7 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
           Open on BazAR
         </ToastAction>
       ),
-      duration: Number.MAX_SAFE_INTEGER,
+      // duration: Number.MAX_SAFE_INTEGER,
     };
   
     return (
@@ -86,6 +86,7 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
           videoInfo={trailerVideoInfo}
         />
         <ToastOnce
+          key={"trailer" + trailerTxInfo.id}
           toast={trailerToast}
         />
       </>
@@ -115,6 +116,7 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
         videoInfo={renderVideoInfo} 
       />
       <ToastOnce
+        key={"paid-for" + renderTxInfo.id}
         toast={paidForToast}
       />
     </>
