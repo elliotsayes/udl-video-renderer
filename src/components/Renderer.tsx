@@ -101,8 +101,8 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
   }
 
   const renderToast: Toast = {
-    title: "No License Found",
-    description: "This content is free to view, Enjoy!",
+    title: "No license found",
+    description: "This content is free to view. Enjoy!",
   }
 
   return (
