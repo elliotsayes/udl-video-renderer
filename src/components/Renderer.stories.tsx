@@ -32,14 +32,14 @@ export const LicensedImage: Story = {
   },
 };
 
-export const UnlicensedImage: Story = {
+export const NoContractImage: Story = {
   args: {
-    renderTxId: "yY337yT4ZORZgCNtriCRm4UjxeV5lDYqvTGoysGdr18"
+    renderTxId: "ynve-5sftS5fUp_UZw39bKuDjIybsm7AsWsBILey9iU"
   },
 };
 
-export const NotContract: Story = {
+export const NoContractVideo: Story = {
   args: {
-    renderTxId: "ynve-5sftS5fUp_UZw39bKuDjIybsm7AsWsBILey9iU"
+    renderTxId: "Ff6hyvaICMBnYyADpZLkvDj69LzraxR2XWl5BdOlvHI"
   },
 };
