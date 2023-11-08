@@ -112,6 +112,7 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
         videoInfo={renderVideoInfo}
       />
       <ToastOnce
+        key={"render" + renderTxId}
         toast={renderToast}
       />
     </RendererLayout>
