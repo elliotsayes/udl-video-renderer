@@ -44,8 +44,14 @@ export const NoContractVideo: Story = {
   },
 };
 
-export const UnlicensedVideo: Story = {
+export const UnlicensedVideoArseeding: Story = {
   args: {
     renderTxId: "sm_box65Fd_xt9DedeP_IMYOXAi-RfWuztEGjfSOdlw"
+  },
+};
+
+export const LicensedVideoBundlr: Story = {
+  args: {
+    renderTxId: "8AaAzEZu3E97din9ikDcHUy4UKpkSw8w-q69uwNwBG4"
   },
 };
