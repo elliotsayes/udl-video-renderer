@@ -43,3 +43,9 @@ export const NoContractVideo: Story = {
     renderTxId: "Ff6hyvaICMBnYyADpZLkvDj69LzraxR2XWl5BdOlvHI"
   },
 };
+
+export const UnlicensedVideo: Story = {
+  args: {
+    renderTxId: "sm_box65Fd_xt9DedeP_IMYOXAi-RfWuztEGjfSOdlw"
+  },
+};
