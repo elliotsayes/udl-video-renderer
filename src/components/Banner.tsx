@@ -1,6 +1,6 @@
 import { AppName } from "@/app";
 import { ThemeButton } from "./ThemeButton";
-import { ProfileConnectDropdown } from "./ProfileConnectDropdown";
+import { ConnectButton } from "arweave-wallet-kit";
 
 export const Banner = () => {
   return (
@@ -10,7 +10,10 @@ export const Banner = () => {
       </span>
       <div className="flex flex-row gap-2 items-center">
         <ThemeButton />
-        <ProfileConnectDropdown />
+        <ConnectButton
+          profileModal={true}
+          showBalance={true}
+        />
       </div>
     </div>
   )
