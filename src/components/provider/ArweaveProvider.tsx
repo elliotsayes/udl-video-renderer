@@ -2,6 +2,19 @@ import { appInfo } from "@/app"
 import { ArweaveWalletKit } from "arweave-wallet-kit"
 import { useTheme } from "./ThemeProvider"
 
+// light primary: 210 40% 98% => 248, 250, 252
+const lightPrimary = {
+  r: 248,
+  g: 250,
+  b: 252,
+}
+// dark primary: 222.2 47.4% 11.2% => 15, 23, 42
+const darkPrimary = {
+  r: 15,
+  g: 23,
+  b: 42,
+}
+
 interface Props {
   children: React.ReactNode
 }
@@ -20,16 +33,8 @@ export const ArweaveProvider = (props: Props) => {
       }}
       theme={{
         displayTheme: activeTheme,
-        accent: {
-          r: 127,
-          g: 127,
-          b: 0,
-        },
-        titleHighlight: {
-          r: 0,
-          g: 127,
-          b: 127,
-        },
+        accent: activeTheme === "light" ? darkPrimary  : lightPrimary,
+        titleHighlight: activeTheme === "light" ? darkPrimary : lightPrimary,
         radius: "default",
       }}
     >
