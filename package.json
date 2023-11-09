@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "bunx --bun vite",
-    "build": "bunx --bun vite build",
+    "build": "bun run build:dapp",
+    "build:standard": "bunx --bun vite build",
+    "build:dapp": "bunx --bun vite build --base ./",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
