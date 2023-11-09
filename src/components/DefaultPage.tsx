@@ -11,6 +11,7 @@ export const DefaultPage = () => {
           Upload your own at{' '}
           <a
             href="https://udl-video-upload.arweave.dev/"
+            target="_blank"
             className="underline"
           >
             udl-video-upload.arweave.dev
