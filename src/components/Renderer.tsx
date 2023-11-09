@@ -10,12 +10,15 @@ import { LicenseConnector } from "./LicenseConnector";
 import { ErrorContent } from "./ErrorContent";
 import { ToastOnce } from "./ToastOnce";
 import { type Toast } from "@/components/ui/use-toast";
+import { useActiveAddress } from "arweave-wallet-kit";
 
 interface Props {
   renderTxId: string;
 }
 
 export const Renderer: React.FC<Props> = ({ renderTxId }) => {
+  const address = useActiveAddress();
+
   const { isError: isLicenseError, licensePayment } = useLicensePayment({
     contractAddress: renderTxId,
   });
@@ -78,7 +81,9 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
     )
   }
 
-  if (licensePayment.hasLicense && licensePayment.requiresPayment) {
+  const isOwner = address === txInfo.ownerAddress;
+
+  if (!isOwner && licensePayment.hasLicense && licensePayment.requiresPayment) {
     return (
       <RendererLayout>
         {
@@ -101,7 +106,10 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
     url: getTxArweaveGatewayUrl(renderTxId)
   }
 
-  const renderToast: Toast = {
+  const renderToast: Toast = isOwner ? {
+    title: "You own this content",
+    description: "You can view this content for free.",
+  } : {
     title: "No license found",
     description: "This content is free to view. Enjoy!",
   }
