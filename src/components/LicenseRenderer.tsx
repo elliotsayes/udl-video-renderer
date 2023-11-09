@@ -72,14 +72,14 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
     const trailerToast: Toast = {
       title: "Viewing trailer",
       description: "Please purchase this content on the BazAR Marketplace to watch the full video.",
-      action: iframe ? (
+      action: iframe ? undefined : (
         <ToastAction
           altText="View asset on the BazAR Marketplace"
           onClick={() => window.open(getContractBazaarUrl(renderTxInfo.id), "_blank")}
         >
           Open on BazAR
         </ToastAction>
-      ) : undefined,
+      ),
       // duration: Number.MAX_SAFE_INTEGER,
     };
   
@@ -103,14 +103,14 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
   const paidForToast: Toast = {
     title: "Access Granted!",
     description: "Thank you for purchasing this video ❤️",
-    action: iframe ? (
+    action: iframe ? undefined : (
       <ToastAction
         altText="View on the BazAR Marketplace"
         onClick={() => window.open(getContractBazaarUrl(renderTxInfo.id), "_blank")}
       >
         Open on BazAR
       </ToastAction>
-    ) : undefined,
+    ),
   };
 
   return (
