@@ -38,7 +38,7 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
     )
   }
 
-  const iframe = isInIframe()
+  const iframe = !isInIframe()
 
   if (isPaidFor === false) {
     if (!trailerTxInfo) {
@@ -49,16 +49,25 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
               Access Denied
             </p>
             <p>
-              To view this content, please purchase<br />
-              it on the{' '}
-              <a
-                href={getContractBazaarUrl(renderTxInfo.id)}
-                target="_blank"
-                className="underline"
-              >
-                BazAR Marketplace
-              </a>
-              .
+              {
+                iframe ? (
+                  <>
+                    To view this content, please purchase it first.
+                  </>
+                ) : (
+                  <>
+                    To view this content, please<br />purchase it first on the{' '}
+                    <a
+                      href={getContractBazaarUrl(renderTxInfo.id)}
+                      target="_blank"
+                      className="underline"
+                    >
+                      BazAR Marketplace
+                    </a>
+                    {'.'}
+                  </>
+                )
+              }
             </p>  
           </div>
         </div>
