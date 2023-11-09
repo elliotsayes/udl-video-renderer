@@ -3,9 +3,10 @@ import { Button } from '@/components/ui/button';
 
 interface Props {
   children: React.ReactNode;
+  reload?: boolean;
 }
 
-export const ErrorContent: React.FC<Props> = ({ children }) => {
+export const ErrorContent: React.FC<Props> = ({ children, reload = true }) => {
   return (
     <div className="h-[100%] flex flex-col items-center justify-center z-50">
       <div className="relative px-4 py-2">
@@ -15,14 +16,16 @@ export const ErrorContent: React.FC<Props> = ({ children }) => {
         <div className='py-2'>
           {children}
         </div>
-        {/* <div className='absolute left-1/2 -translate-x-1/2'> */}
-          <Button
-            variant={"outline"}
-            onClick={() => window.location.reload()}
-          >
-            Reload
-          </Button>
-        {/* </div> */}
+        {
+          reload && (
+            <Button
+              variant={"outline"}
+              onClick={() => window.location.reload()}
+            >
+              Reload
+            </Button>
+          )
+        }
       </div>
     </div>
   );
