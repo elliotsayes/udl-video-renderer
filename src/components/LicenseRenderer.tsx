@@ -38,7 +38,7 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
     )
   }
 
-  const iframe = !isInIframe()
+  const iframe = isInIframe()
 
   if (isPaidFor === false) {
     if (!trailerTxInfo) {
