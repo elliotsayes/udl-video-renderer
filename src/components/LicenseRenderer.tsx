@@ -7,6 +7,7 @@ import { ErrorContent } from "./ErrorContent";
 import { ToastOnce } from "./ToastOnce";
 import { type Toast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast";
+import { isInIframe } from "@/lib/utils";
 
 interface Props extends LicenseConnectorProps {
   address: string;
@@ -36,6 +37,8 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
       </LoadingContent>
     )
   }
+
+  const iframe = isInIframe()
 
   if (isPaidFor === false) {
     if (!trailerTxInfo) {
@@ -69,14 +72,14 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
     const trailerToast: Toast = {
       title: "Viewing trailer",
       description: "Please purchase this content on the BazAR Marketplace to watch the full video.",
-      action: (
+      action: iframe ? (
         <ToastAction
           altText="View asset on the BazAR Marketplace"
           onClick={() => window.open(getContractBazaarUrl(renderTxInfo.id), "_blank")}
         >
           Open on BazAR
         </ToastAction>
-      ),
+      ) : undefined,
       // duration: Number.MAX_SAFE_INTEGER,
     };
   
@@ -100,14 +103,14 @@ export const LicenseRenderer: React.FC<Props> = ({ renderTxInfo, address, traile
   const paidForToast: Toast = {
     title: "Access Granted!",
     description: "Thank you for purchasing this video ❤️",
-    action: (
+    action: iframe ? (
       <ToastAction
         altText="View on the BazAR Marketplace"
         onClick={() => window.open(getContractBazaarUrl(renderTxInfo.id), "_blank")}
       >
         Open on BazAR
       </ToastAction>
-    ),
+    ) : undefined,
   };
 
   return (
