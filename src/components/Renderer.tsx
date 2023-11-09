@@ -66,16 +66,16 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
   }
 
   if (!(contentType?.startsWith("video/") ?? false)) {
-    // return (
-    //   <RendererLayout>
-    //     <ErrorContent>
-    //       <p>
-    //         Invalid Media Type. Only supports:{' '}<br />
-    //         <code className="">Content-Type: video/*</code>
-    //       </p>
-    //     </ErrorContent>
-    //   </RendererLayout>
-    // )
+    return (
+      <RendererLayout>
+        <ErrorContent>
+          <p>
+            Invalid Media Type. Only supports:{' '}<br />
+            <code className="">Content-Type: video/*</code>
+          </p>
+        </ErrorContent>
+      </RendererLayout>
+    )
   }
 
   if (licensePayment.hasLicense && licensePayment.requiresPayment) {
