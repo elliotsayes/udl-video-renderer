@@ -1,4 +1,4 @@
-import './App.css'
+import './index.css'
 import { Providers } from './components/provider/Providers';
 import { RenderTxLoader } from './components/RenderTxLoader';
 
