@@ -7,7 +7,7 @@
     "dev": "bunx --bun vite",
     "build": "bun run build:dapp",
     "build:standard": "bunx --bun vite build",
-    "build:dapp": "bunx --bun vite build --base ./",
+    "build:dapp": "timestamp=$(date \"+%s\") && bunx --bun vite build --base ./ --outDir \"dist-dapp/build-$timestamp\"",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
