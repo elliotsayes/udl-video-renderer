@@ -50,8 +50,14 @@ export const UnlicensedVideoArseeding: Story = {
   },
 };
 
-export const LicensedVideoBundlr: Story = {
+export const LicensedVideoBundlrWithTrailer: Story = {
   args: {
     renderTxId: "8AaAzEZu3E97din9ikDcHUy4UKpkSw8w-q69uwNwBG4"
+  },
+};
+
+export const UnlicensedVideoBundlrNoTrailer: Story = {
+  args: {
+    renderTxId: "1Pel2iFqEaajkl5XLGt3Aq6QnD1Gif5nvrgeanzyN-E"
   },
 };
