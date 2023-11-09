@@ -18,9 +18,9 @@ export const ThemeButton = () => {
     >
       {
         activeTheme === "light" ? (
-          <SunIcon />
-        ) : (
           <MoonIcon />
+        ) : (
+          <SunIcon />
         )
       }
     </Button>
