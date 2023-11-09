@@ -11,11 +11,10 @@ export const VideoPlayer = (props: Props) => {
   const { url } = videoInfo;
 
   return (
-    <div className="w-full h-full px-4 py-2 flex flex-col justify-center">
-      {/* Offset for the banner at the top */}
-      <div className="pb-8">
+    <div className="w-full h-full px-4 flex flex-col justify-center">
+      <div>
         <video
-          className="w-[100%] md:w-[95%] lg:w-[90%] h-auto mx-auto"
+          className="w-[100%] md:w-[95%] lg:w-[90%] max-h-[calc(100vh-8rem)] h-auto mx-auto"
           src={url}
           controls
         />
