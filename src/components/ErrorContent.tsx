@@ -8,7 +8,7 @@ interface Props {
 
 export const ErrorContent: React.FC<Props> = ({ children, reload = true }) => {
   return (
-    <div className="h-[100%] flex flex-col items-center justify-center z-50">
+    <div className="h-[100%] flex flex-col pb-16 items-center justify-center z-50">
       <div className="relative px-4 py-2">
         <p className='text-xl text-destructive'>
           An Error Occurred!
