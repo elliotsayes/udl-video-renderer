@@ -27,16 +27,6 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
   const trailerTxId = txInfo && getTrailerTxId(txInfo);
   const contentType = txInfo && getContentType(txInfo);
 
-  if (isLicenseError) {
-    return (
-      <RendererLayout>
-        <ErrorContent>
-          <p>License Error</p>
-        </ErrorContent>
-      </RendererLayout>
-    )
-  }
-
   if (isTxInfoError) {
     return (
       <RendererLayout>
@@ -48,12 +38,12 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
     )
   }
 
-  if (!licensePayment) {
+  if (isLicenseError) {
     return (
       <RendererLayout>
-        <LoadingContent>
-          <p>Loading License...</p>
-        </LoadingContent>
+        <ErrorContent>
+          <p>Failed to retrieve license information</p>
+        </ErrorContent>
       </RendererLayout>
     )
   }
@@ -73,7 +63,7 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
       <RendererLayout>
         <ErrorContent>
           <p>
-            Invalid Media Type. Only supports:{' '}<br />
+            Invalid Media Type. Only supports: <br />
             <code className="">Content-Type: video/*</code>
           </p>
         </ErrorContent>
@@ -82,6 +72,39 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
   }
 
   const isOwner = address === txInfo.ownerAddress;
+
+  if (isOwner) {
+    const renderVideoInfo: VideoInfo = {
+      url: getTxArweaveGatewayUrl(renderTxId)
+    }
+
+    const ownerToast: Toast = {
+      title: "You own this content",
+      description: "You can view this content for free!",
+    }
+  
+    return (
+      <RendererLayout>
+        <VideoPlayer
+          videoInfo={renderVideoInfo}
+        />
+        <ToastOnce
+          key={"render" + renderTxId}
+          toast={ownerToast}
+        />
+      </RendererLayout>
+    );
+  }
+
+  if (!licensePayment) {
+    return (
+      <RendererLayout>
+        <LoadingContent>
+          <p>Loading License...</p>
+        </LoadingContent>
+      </RendererLayout>
+    )
+  }
 
   if (!isOwner && licensePayment.hasLicense && licensePayment.requiresPayment) {
     return (
@@ -101,15 +124,12 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
       </RendererLayout>
     )
   }
-  
+
   const renderVideoInfo: VideoInfo = {
     url: getTxArweaveGatewayUrl(renderTxId)
   }
 
-  const renderToast: Toast = isOwner ? {
-    title: "You own this content",
-    description: "You can view this content for free.",
-  } : {
+  const noLicenseToast: Toast = {
     title: "No license found",
     description: "This content is free to view. Enjoy!",
   }
@@ -121,7 +141,7 @@ export const Renderer: React.FC<Props> = ({ renderTxId }) => {
       />
       <ToastOnce
         key={"render" + renderTxId}
-        toast={renderToast}
+        toast={noLicenseToast}
       />
     </RendererLayout>
   );
